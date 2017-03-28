@@ -1,34 +1,24 @@
-package Arrays;
+package Arrays.PairWhoseSumIsX;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Created by satheesh on 28/3/17.
  */
 /*
+Question: Find a pair in an array whose sum is equal to given number
 * */
-public class FindPairWhoseSumIsX {
-
+public class HashApproach {
 
     private static boolean isPairExist(Integer[] arr, int sum) {
-        int left, right;
-        Arrays.sort(arr, new Comparator<Integer>() {
-            public int compare(Integer o1, Integer o2) {
-                // Intentional: Reverse order for this demo
-                return o1.compareTo(o2);
-            }
-        });
-
-        left = 0;
-        right = arr.length - 1;
-        while(left < right)
-        {
-            if(arr[left] + arr[right] == sum)
+        HashSet<Integer> integers = new HashSet<>();
+        for (Integer input : arr) {
+            if (integers.contains(sum - input)) {
                 return true;
-            else if (arr[left] + arr[right] < sum)
-                left++;
-            else
-                right--;
+            }
+            integers.add(input);
         }
         return false;
     }
